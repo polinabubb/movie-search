@@ -1,0 +1,133 @@
+.films {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.films__search {
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+.films__search input::placeholder{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #999FA6;
+}
+.films__search input:focus {
+    border: 1px solid #FF5500;
+    border-radius: 8px;
+}
+[type="search"]::-webkit-search-cancel-button {
+    content: "+";
+    -webkit-appearance: none;
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    background-image: url("../../../public/cross.svg");
+    background-size: 16px 16px;
+
+}
+
+  .films__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    font-family: 'SF Pro Text', sans-serif;
+}
+
+.film-item {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+
+.film-item__container {
+    flex-direction: row;
+    display: flex;
+    gap: 24px;
+}
+
+.film-item__img {
+    width: 100px;
+    height: 120px;
+    border-radius: 8px;
+}
+
+.film-item__information {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.film-item__title {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.film-item__genre, .film-item__year, .film-item__description {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.genre__name, .year__name, .description__name {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #ABABAB;
+}
+
+.genre__value, .description__value, .year__value {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B1F23;
+}
+
+.description__value {
+    max-width: 600px;
+
+}
+
+.stars-rating {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+}
+
+.star-rating__star.marked path {
+    fill: #FF5500;
+    stroke: none;
+}
+
+.star-rating__star path:hover {
+    fill: #ABABAB;
+    stroke: none;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.star-rating__number {
+    color: #ABABAB;
+    font-weight: 400;
+    font-size: 14px;
+
+    text-align: center;
+}
+
+.star-rating__number .marked {
+    color: #000000;
+}
