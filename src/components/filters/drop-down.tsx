@@ -38,6 +38,7 @@ export function DropDown({dropDownList, placeholder}: dropDownListProps): JSX.El
                     return <div key="item" className="drop-down__item" onClick={() => {
                         setActiveItem(item);
                         setNeedDrowList(false);
+
                     }}>{item}</div>
                 })}
             </div>

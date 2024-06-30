@@ -25,7 +25,6 @@ function App() {
                 path={AppRoute.Main}
                 element={
                     <>
-                        <Header/>
                         <main className="main">
                             <Filters/>
                             <FilmsList/>

@@ -42,6 +42,7 @@
 }
 
 .film-item {
+    cursor:pointer;
     flex-direction: row;
     display: flex;
     justify-content: space-between;

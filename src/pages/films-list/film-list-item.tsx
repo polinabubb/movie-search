@@ -1,11 +1,13 @@
 import {ShortMovieInfo} from '../../types';
 import {StarsRating} from './star-rating';
 import './films-list.css';
+import {useNavigate} from "react-router-dom";
 
 
 export function FilmsListItem({id, title, description, poster, release_year, genre}: ShortMovieInfo): JSX.Element {
+    const navigate = useNavigate();
     return (
-        <div className="film-item" key={id}>
+        <div className="film-item" key={id} onClick={() => navigate(`/api/v1/movie/${id}`)}>
             <div className="film-item__container">
                 <img src={poster} alt="постер" className="film-item__img"/>
                 <div className="film-item__information">
