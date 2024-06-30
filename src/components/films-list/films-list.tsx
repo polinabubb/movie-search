@@ -1,7 +1,11 @@
 import FilmsListItem from './film-list-item';
-import {GENRES} from "../../const";
-
+import {useAppSelector} from '../../hooks';
+import {getFilms, getFilmsDataLoadingStatus} from '../../store/film-data/selectors';
+import {ShortMovieInfo} from '../../types';
 export function FilmsList(): JSX.Element {
+    const films = useAppSelector(getFilms) as ShortMovieInfo[];
+    const isFilmsLoading = useAppSelector(getFilmsDataLoadingStatus);
+
     return (
         <div className="films">
             <form action="" method="get" className="films__search">
@@ -14,27 +18,12 @@ export function FilmsList(): JSX.Element {
                 </button>
                 <input name="s" placeholder="Название фильма" type="search"/>
             </form>
-
-            <div className="films__list">
-                {[{
-                    id: '1212',
-                    title: 'Властелин колец: Братство кольца',
-                    description: 'Сказания о Средиземье — это хроника Великой войны за Кольцо, войны, длившейся не одну тысячу лет. Тот, кто владел Кольцом, получал власть над всеми живыми тварями, но был обязан служить злу.',
-                    image: 'https://ir-3.ozone.ru/s3/multimedia-y/c1000/6840322846.jpg',
-                    year: 2001,
-                    genre: GENRES.cartoon
-                },
-                    {
-                        id: '1212',
-                        title: 'Властелин колец: Братство кольца',
-                        description: 'Сказания о Средиземье — это хроника Великой войны за Кольцо, войны, длившейся не одну тысячу лет. Тот, кто владел Кольцом, получал власть над всеми живыми тварями, но был обязан служить злу.',
-                        image: 'https://ir-3.ozone.ru/s3/multimedia-y/c1000/6840322846.jpg',
-                        year: 2001,
-                        genre: GENRES.cartoon
-                    }].map((film) => {
+            {isFilmsLoading ? <>Loading films...</> : <div className="films__list">
+                {[...films].map((film) => {
                     return <FilmsListItem {...film}></FilmsListItem>
                 })}
-            </div>
+            </div>}
+
         </div>
     );
 }

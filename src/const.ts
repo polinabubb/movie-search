@@ -28,4 +28,18 @@ export const YEARS = [
     '2006',
     '1990-2005',
     '1950-1989'
-]
+];
+export enum AppRoute {
+    Main = '/',
+    Login = '/login',
+    Logout = '/logout',
+    Film = '/films/:id',
+}
+export enum AuthorizationStatus {
+    Auth = 'AUTH',
+    NoAuth = 'NO_AUTH',
+    Unknown = 'UNKNOWN',
+}export enum NameSpace {
+    Data = 'DATA',
+    User = 'USER',
+}
