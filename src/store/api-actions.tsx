@@ -1,37 +1,41 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AppDispatch, State} from "../types";
-import {ShortMovieInfo} from "../types";
-import {loadFilms} from "./action";
-import { AxiosInstance } from 'axios';
+import {ShortMovieInfo, FullMovieInfo} from "../types";
+import {AxiosInstance} from 'axios';
+import {useAppDispatch, useAppSelector} from '../hooks';
+import {
+    incrementFilmsCount
+} from '../store/film-data/film-data';
+import {getCount} from "./film-data/selectors";
 
 export const fetchFilmsAction = createAsyncThunk<
     ShortMovieInfo[],
-    undefined,
+    { limit: number, title: string },
     {
         dispatch: AppDispatch;
+        state: State;
         extra: AxiosInstance;
     }
->('data/fetchFilms', async (_arg, { extra: api }) => {
-    const { data } = await api.get<{search_result:ShortMovieInfo[]}>("http://localhost:3030/api/v1/search");
+>('data/fetchFilms', async (args, {extra: api}) => {
+    //console.log(`http://localhost:3030/api/v1/search/?limit=${filmsCount}${title !== '' ? '&title="' + title + '"' : ''}`);
+    const {limit, title} = args;
+    console.log(`http://localhost:3030/api/v1/search/?limit=${limit}${title !== '' && title ? '&title="' + title + '"' : ''}`);
+    const {data} = await api.get<{
+        search_result: ShortMovieInfo[]
+    }>(`http://localhost:3030/api/v1/search/?limit=${limit}${title !== '' && title ? '&title=' + title.toLowerCase() + '' : ''}`);
     return data.search_result;
 });
 
 
-export const fetchFilmByIdAction =
-    createAsyncThunk<
-        void,
-        undefined,
-        {
-            dispatch: AppDispatch;
-            state: State;
-        }
-    >("data/fetchFilm", async (_arg, {dispatch}) => {
-
-
-        const data = await fetch("http://localhost:3030/api/v1/movie/1");
-        await data.json().then(function (response) {
-            const serverChats = response.data;
-            dispatch(loadFilms(serverChats));
-            console.log(serverChats);
-        });
-    });
+export const fetchFilmByIdAction = createAsyncThunk<
+    FullMovieInfo,
+    string,
+    {
+        dispatch: AppDispatch;
+        state: State;
+        extra: AxiosInstance;
+    }
+>('data/fetchFilm', async (id, {extra: api}) => {
+    const {data} = await api.get<FullMovieInfo>(`http://localhost:3030/api/v1/movie/${id}`);
+    return data;
+});

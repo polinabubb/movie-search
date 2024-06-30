@@ -132,3 +132,8 @@
 .star-rating__number .marked {
     color: #000000;
 }
+.films__button{
+    border: 1px solid #b2b2b2;
+    padding: 4px 24px;
+    border-radius: 8px;
+}

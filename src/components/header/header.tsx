@@ -18,7 +18,7 @@ export function Header(): JSX.Element {
 
                 </button>
                 <button className="header__button-logout">
-                    Войти
+                    Выйти
                 </button>
             </div>
         </header>

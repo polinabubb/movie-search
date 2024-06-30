@@ -33,7 +33,7 @@ export enum AppRoute {
     Main = '/',
     Login = '/login',
     Logout = '/logout',
-    Film = '/films/:id',
+    Film = '/api/v1/movie/:id',
 }
 export enum AuthorizationStatus {
     Auth = 'AUTH',

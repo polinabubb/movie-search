@@ -4,13 +4,11 @@ import './index.css';
 import App from './App';
 import {store} from './store';
 import reportWebVitals from './reportWebVitals';
-//import {Provider} from 'react-redux';
 import {Provider} from "react-redux";
 import {HelmetProvider} from 'react-helmet-async'
 import HistoryRouter from './components/history-route/history-route';
 import browserHistory from './browser-history';
-import {fetchFilmsAction} from "./store/api-actions";
-store.dispatch(fetchFilmsAction());
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
